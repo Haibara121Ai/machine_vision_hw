@@ -1,6 +1,7 @@
-machine_vision_0/Pytorch_Retinaface/weights/
-machine_vision_0/Pytorch_Retinaface/results/
-machine_vision_0/Pytorch_Retinaface/data/
-machine_vision_0/Pytorch_Retinaface/weights/*.pth
-machine_vision_0/Pytorch_Retinaface/weights/*.tar
-machine_vision_0/Pytorch_Retinaface/results/*.jpg
+weights/
+results/
+data/
+weights/*.pth
+weights/*.tar
+results/*.jpg
+results/*.jpg

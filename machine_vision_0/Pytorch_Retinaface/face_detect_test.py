@@ -14,8 +14,6 @@ from utils.config import cfg_mnet, cfg_re50
 from layers.functions.prior_box import PriorBox
 from utils.nms.py_cpu_nms import py_cpu_nms
 
-
-
 class FaceDetector:
     def __init__(self, network='resnet50',
                  trained_model='D:/pywork/machine_vision/machine_vision_0/Pytorch_Retinaface/weights/Resnet50_Final.pth',
@@ -172,8 +170,10 @@ class FaceDetector:
         return img
 
 
-def main():
-    """主函数：检测单张照片"""
+def face_detect():
+    """
+        测试代码
+    """
     # 初始化检测器
     detector = FaceDetector(
         network='mobile0.25',
@@ -213,4 +213,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    face_detect()
