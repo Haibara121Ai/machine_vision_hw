@@ -1,0 +1,6 @@
+{
+    "python.analysis.extraPaths": [
+        "./machine_vision_0/Pytorch_Retinaface",
+        "./machine_vision_0/face_landmark_detect"
+    ]
+}

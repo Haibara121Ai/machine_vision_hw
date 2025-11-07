@@ -32,14 +32,14 @@ def bound_box_generate(img_path, detector = detector):
     
     x1f, y1f, x2f, y2f, score = dets[0,0:5]
     # 对边界框进行适当扩展
-    if x1f > 40:
-        x1f -= 40
-    if y1f > 40:
-        y1f -= 40
-    if x2f < img.shape[1] - 40:
-        x2f += 40
-    if y2f < img.shape[0] - 40:
-        y2f += 40
+    if x1f > 80:
+        x1f -= 80
+    if y1f > 80:
+        y1f -= 80
+    if x2f < img.shape[1] - 80:
+        x2f += 80
+    if y2f < img.shape[0] - 80:
+        y2f += 80
 
     x1 = int(x1f)
     y1 = int(y1f)
@@ -71,6 +71,7 @@ def basic_face_alignment(img_path):
         
         for i, face_landmarks in enumerate(landmarks):
             print(f"人脸 {i+1}: {len(face_landmarks)} 个关键点")
+            print(face_landmarks)
             
             for point in face_landmarks:
                 x, y = int(point[0]), int(point[1])
