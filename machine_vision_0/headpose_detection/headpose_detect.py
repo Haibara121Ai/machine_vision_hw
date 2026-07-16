@@ -111,29 +111,29 @@ def draw_6_points(image, landmarks_68, point_size=4):
     return result_image
 
 if __name__ == "__main__":
-    image_path = 'D:/pywork/machine_vision/machine_vision_0/face_landmark_detect/for_face_detect_result.jpg'
+    image_path = 'D:/pywork/machine_vision/machine_vision_0/result_pic/pic3/0_for_face_detect.jpg'
     img = cv2.imread(image_path)
-    
+    result_img = img.copy()
     if img is None:
         exit()
     
     landmarks = basic_face_alignment(image_path)
     
     if landmarks is not None and len(landmarks) > 0:
-        height, width = img.shape[:2]
-        estimator = PoseEstimator(image_size=(width, height))
-        
-        rotation_vector, translation_vector, euler_angles = estimator.estimate_pose(landmarks[0])
-        
-        if rotation_vector is not None:
-            yaw, pitch, roll = euler_angles
-            print(f"Yaw: {yaw:.1f}°, Pitch: {pitch:.1f}°, Roll: {roll:.1f}°")
+        for i in range(len(landmarks)):
+            height, width = img.shape[:2]
+            estimator = PoseEstimator(image_size=(width, height))
             
-            result_img = img.copy()
-            result_img = draw_6_points(result_img, landmarks[0])
-            result_img = draw_pose_axes(result_img, rotation_vector, translation_vector, estimator.camera_matrix)
+            rotation_vector, translation_vector, euler_angles = estimator.estimate_pose(landmarks[i])
             
-            cv2.imshow('6-Point Pose Estimation', result_img)
-            cv2.imwrite('D:/pywork/machine_vision/machine_vision_0/headpose_detection/6points_head_pose_result.jpg', result_img)
-            cv2.waitKey(0)
-            cv2.destroyAllWindows()
+            if rotation_vector is not None:
+                yaw, pitch, roll = euler_angles
+                print(f"Yaw: {yaw:.1f}°, Pitch: {pitch:.1f}°, Roll: {roll:.1f}°")
+                
+                result_img = draw_6_points(result_img, landmarks[i])
+                result_img = draw_pose_axes(result_img, rotation_vector, translation_vector, estimator.camera_matrix)
+                
+        cv2.imshow('6-Point Pose Estimation', result_img)
+        cv2.imwrite('D:/pywork/machine_vision/machine_vision_0/headpose_detection/6points_head_pose_result.jpg', result_img)
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
